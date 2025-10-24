@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Tutors - {{ tutor.name }} {% endblock title %}
+{% block content %}
+<body>
+<div class="container" style="padding-top:140px;">
+  <div class="container text-center">
+    <div class="tutor-profile">
+      <img src="{{ tutor.photo.url }}" alt="{{ tutor.name }}" class="tutor-photo-large" style="width: 300px; height: 300px;">
+      <h1>{{ tutor.name }}</h1>
+      {% if tutor.is_mvp %}
+        <p class="badge">🌟 MVP Tutor</p>
+      {% endif %}
+      <p><strong>Subject:</strong> {{ tutor.course_subject }}</p>
+      <p><strong>Phone:</strong> {{ tutor.phone }}</p>
+      <p><strong>Email:</strong> <a href="mailto:{{ tutor.email }}">{{ tutor.email }}</a></p>
+      
+      <div class="description">
+        <h2>About {{ tutor.name }}</h2>
+        <p>{{ tutor.description }}</p>
+      </div>
+      <a href="{% url 'tutors:tutors' %}" class="btn">← Back to All Tutors</a>
+    </div>
+  </div>
+</div>
+</body>
+
+{% endblock content %}

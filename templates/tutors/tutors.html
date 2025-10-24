@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} Tutors {% endblock title %}
+{% block content %}
+
+<body>
+  <div class="container" style="padding-top:140px;">
+    <div class="text-success display-4">Our Tutors</div>
+    <div class="row">
+      {% for tutor in tutors %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 text-center">
+            <img src="{{ tutor.photo.url }}" alt="{{ tutor.name }}" class="card-img-top" style="width: 100%; height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ tutor.name }}</h5>
+              <p class="card-text"><strong>Subject:</strong> {{ tutor.course_subject }}</p>
+              {% if tutor.is_mvp %}
+                <p class="badge bg-warning text-dark">🌟 MVP Tutor</p>
+              {% endif %}
+              <a href="{% url 'tutors:tutor' tutor.id %}" class="btn btn-primary mt-2">View Profile</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No tutors available at the moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+{% endblock content %}
